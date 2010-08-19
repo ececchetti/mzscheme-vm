@@ -205,29 +205,29 @@ javascript's @racketidfont{null} is used. This is equivalent to javascript's
 
 @;-----------------------------------------------------------------------------
 
-@section{Examples}
+@;@section{Examples}
 
-This section contains a few simple examples of how to use the FFI.
+@;This section contains a few simple examples of how to use the FFI.
+@;
+@;Example One:
+@;@racketblock[
+@;(js-call (js-get-global-value "setTimeout")
+@;         #f
+@;         (procedure->void-js-fun
+@;          (lambda () (printf "tick!")))
+@;         (scheme->prim-js 1000))
+@;]
+@;This code will return @|void-const|, and after one second it will print
+@;@racketoutput{tick!}. Note that this is non-blocking because javascript's
+@;@racketidfont{setTimeout} is non-blocking.
 
-Example One:
-@racketblock[
-(js-call (js-get-global-value "setTimeout")
-         #f
-         (procedure->void-js-fun
-          (lambda () (printf "tick!")))
-         (scheme->prim-js 1000))
-]
-This code will return @|void-const|, and after one second it will print
-@racketoutput{tick!}. Note that this is non-blocking because javascript's
-@racketidfont{setTimeout} is non-blocking.
-
-Example Two:
-@racketblock[
-(define js-ht (js-make-hash '(("foo" 1) ("bar" 2))))
-(js-set-field! js-ht "foo" 3)
-]
-After evaluation, @racket[js-ht] will be a javascript hash table with the
-bindings of @racketidfont{js-ht}@racketparenfont{[}@racketvalfont{"foo"}
-@racketparenfont{]}@racketidfont{ = }@racketvalfont{3} and
-@racketidfont{js-ht}@racketparenfont{[}@racketvalfont{"bar"}
-@racketparenfont{]}@racketidfont{ = }@racketvalfont{2}.
+@;Example Two:
+@;@racketblock[
+@;(define js-ht (js-make-hash '(("foo" 1) ("bar" 2))))
+@;(js-set-field! js-ht "foo" 3)
+@;]
+@;After evaluation, @racket[js-ht] will be a javascript hash table with the
+@;bindings of @racketidfont{js-ht}@racketparenfont{[}@racketvalfont{"foo"}
+@;@racketparenfont{]}@racketidfont{ = }@racketvalfont{3} and
+@;@racketidfont{js-ht}@racketparenfont{[}@racketvalfont{"bar"}
+@;@racketparenfont{]}@racketidfont{ = }@racketvalfont{2}.
